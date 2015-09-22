@@ -19,7 +19,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardViewHo
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View cardItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.semester_card, parent, false);
+        View cardItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_list, parent, false);
         cardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
