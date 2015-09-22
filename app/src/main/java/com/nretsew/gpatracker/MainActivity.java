@@ -94,4 +94,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public class Course {
+        public String title;
+        public int weight;
+        public int grade;
+
+        public Course(String title, int weight, int grade) {
+            this.title = title;
+            this.weight = weight;
+            this.grade = grade;
+        }
+    }
 }
