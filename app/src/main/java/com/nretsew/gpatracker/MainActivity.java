@@ -1,15 +1,14 @@
 package com.nretsew.gpatracker;
 
-import android.app.ActionBar;
+import android.app.FragmentManager;
 import android.support.design.widget.FloatingActionButton;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 
@@ -21,20 +20,35 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView semRecyclerView;
     private RecyclerView.Adapter semAdapter;
+    List<String> sems;
+
+    private RecyclerView courseRecyclerView;
+    private RecyclerView.Adapter courseAdapter;
+    List<Course> courses;
+
     private FloatingActionButton addButton;
     private RecyclerView.LayoutManager recyclerLayout;
     private LinearLayout mainLinearLayout;
-    List<String> names;
+    private CourseViewFragment courseViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();
+        initSem();
+        //initCourse();
+        showCourseView();
     }
 
-    private void init(){
+    private void showCourseView() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.main_linear, courseViewFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void initSem(){
         mainLinearLayout = (LinearLayout) findViewById(R.id.main_linear);
         semRecyclerView = (RecyclerView) findViewById(R.id.sem_recycler_view);
         semRecyclerView.setHasFixedSize(false);
@@ -42,21 +56,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerLayout = new LinearLayoutManager(this);
         semRecyclerView.setLayoutManager(recyclerLayout);
 
-        names = new ArrayList<String>();
+        sems = new ArrayList<String>();
 
         for(int i = 0; i < 5; i++){
-            names.add("Semester " + i);
+            sems.add("Semester " + i);
         }
 
 
-        semAdapter = new CustomAdapter(names);
+        semAdapter = new CustomAdapter(sems);
         semRecyclerView.setAdapter(semAdapter);
 
         addButton = (FloatingActionButton) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                names.add("NEW SEMESTER ADDED");
+                sems.add("NEW SEMESTER ADDED");
                 semAdapter.notifyItemInserted(semAdapter.getItemCount());
                 semRecyclerView.scrollToPosition(semAdapter.getItemCount() - 1);
 
@@ -74,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    names.remove(position);
+                                    sems.remove(position);
                                     semAdapter.notifyItemRemoved(position);
                                 }
                                 semAdapter.notifyDataSetChanged();
@@ -83,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    names.remove(position);
+                                    sems.remove(position);
                                     semAdapter.notifyItemRemoved(position);
                                 }
                                 semAdapter.notifyDataSetChanged();
@@ -96,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
     public class Course {
         public String title;
-        public int weight;
+        public double weight;
         public int grade;
 
-        public Course(String title, int weight, int grade) {
+        public Course(String title, double weight, int grade) {
             this.title = title;
             this.weight = weight;
             this.grade = grade;
