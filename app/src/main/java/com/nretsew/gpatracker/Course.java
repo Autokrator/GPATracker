@@ -7,7 +7,7 @@ public class Course {
 
     public Course(String title, double weight, int grade) {
         this.title = title;
-        this.weight = Double.toString(weight);
-        this.grade = Integer.toString(grade);
+        this.weight = "Weight " + Double.toString(weight);
+        this.grade = "Grade: " + Integer.toString(grade);
     }
 }

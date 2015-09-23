@@ -32,6 +32,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CardViewHo
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
         holder.title.setText(courses.get(position).title);
+        holder.weight.setText(courses.get(position).weight);
+        holder.grade.setText(courses.get(position).grade);
     }
 
     @Override
