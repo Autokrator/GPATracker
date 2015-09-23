@@ -23,7 +23,7 @@ public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> 
         cardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                
             }
         });
         return new CardViewHolder(cardItem);

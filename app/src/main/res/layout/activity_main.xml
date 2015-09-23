@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context=".MainActivity"
     android:id="@+id/main_layout">
@@ -23,6 +24,7 @@
         android:clickable="true"
         android:src="@drawable/add_button"
         android:layout_gravity="bottom|right"
-        android:id="@+id/button_add_sem" />
+        android:id="@+id/button_add_sem"
+        app:elevation="6dp"/>
 
 </FrameLayout>
