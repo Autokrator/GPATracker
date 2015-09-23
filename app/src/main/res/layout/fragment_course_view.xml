@@ -26,8 +26,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/course_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:theme="@style/CardView.Light" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -38,7 +37,7 @@
             android:clickable="true"
             android:src="@drawable/add_button"
             android:layout_gravity="bottom|right"
-            android:id="@+id/add_button" />
+            android:id="@+id/button_add_course" />
 
 
     </android.support.v7.widget.CardView>

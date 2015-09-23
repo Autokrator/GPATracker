@@ -10,9 +10,9 @@ import java.util.List;
 
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CardViewHolder> {
-    private List<MainActivity.Course> courses;
+    private List<Course> courses;
 
-    public CourseAdapter(List<MainActivity.Course> courses) {
+    public CourseAdapter(List<Course> courses) {
         super();
         this.courses = courses;
     }

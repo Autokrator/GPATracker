@@ -14,6 +14,7 @@ import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListen
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,14 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter semAdapter;
     List<String> sems;
 
-    private RecyclerView courseRecyclerView;
-    private RecyclerView.Adapter courseAdapter;
+    private CourseViewFragment courseViewFragment;
     List<Course> courses;
 
     private FloatingActionButton addButton;
     private RecyclerView.LayoutManager recyclerLayout;
     private LinearLayout mainLinearLayout;
-    private CourseViewFragment courseViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initSem();
-        //initCourse();
+        initCourse();
         showCourseView();
     }
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         semAdapter = new SemAdapter(sems);
         semRecyclerView.setAdapter(semAdapter);
 
-        addButton = (FloatingActionButton) findViewById(R.id.add_button);
+        addButton = (FloatingActionButton) findViewById(R.id.button_add_sem);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,15 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class Course {
-        public String title;
-        public double weight;
-        public int grade;
-
-        public Course(String title, double weight, int grade) {
-            this.title = title;
-            this.weight = weight;
-            this.grade = grade;
+    public void initCourse() {
+        courses = new ArrayList<Course>();
+        for(int i = 0; i < 5; i++){
+            courses.add(new Course("Course " + i, i*0.5, i*10));
         }
+        courseViewFragment = new CourseViewFragment(courses);
     }
 }
