@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        semAdapter = new CustomAdapter(sems);
+        semAdapter = new SemAdapter(sems);
         semRecyclerView.setAdapter(semAdapter);
 
         addButton = (FloatingActionButton) findViewById(R.id.add_button);

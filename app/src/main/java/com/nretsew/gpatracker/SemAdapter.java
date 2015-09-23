@@ -1,6 +1,5 @@
 package com.nretsew.gpatracker;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +9,17 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardViewHolder> {
+public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> {
     private List<String> semesterNames;
 
-    public CustomAdapter(List<String> semesterNames) {
+    public SemAdapter(List<String> semesterNames) {
         super();
         this.semesterNames = semesterNames;
     }
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View cardItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_list, parent, false);
+        View cardItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.sem_card_list, parent, false);
         cardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
