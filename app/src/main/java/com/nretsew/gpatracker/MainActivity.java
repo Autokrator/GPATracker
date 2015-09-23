@@ -41,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showCourseView() {
+        //Fragment tools.
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_linear, courseViewFragment);
+
+        //Add fragment to activity and commit changes.
+        fragmentTransaction.add(R.id.main_layout, courseViewFragment);
         fragmentTransaction.commit();
     }
 
@@ -109,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void initCourse() {
         courses = new ArrayList<Course>();
+
+        // Init: Random Values
         for(int i = 0; i < 5; i++){
             courses.add(new Course("Course " + i, i*0.5, i*10));
         }

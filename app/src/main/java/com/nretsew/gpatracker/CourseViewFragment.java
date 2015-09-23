@@ -22,6 +22,7 @@ public class CourseViewFragment extends Fragment {
     private RecyclerView.Adapter courseAdapter;
     private List<Course> courses;
     private FloatingActionButton addButton;
+    private RecyclerView.LayoutManager recyclerLayout;
 
     public CourseViewFragment() {
 
@@ -46,6 +47,9 @@ public class CourseViewFragment extends Fragment {
 
         courseRecyclerView = (RecyclerView) v.findViewById(R.id.course_recycler_view);
         courseRecyclerView.setHasFixedSize(false);
+
+        recyclerLayout = new LinearLayoutManager(v.getContext());
+        courseRecyclerView.setLayoutManager(recyclerLayout);
 
         courseAdapter = new CourseAdapter(courses);
         courseRecyclerView.setAdapter(courseAdapter);
