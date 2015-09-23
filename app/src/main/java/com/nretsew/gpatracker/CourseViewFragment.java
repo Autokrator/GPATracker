@@ -57,7 +57,6 @@ public class CourseViewFragment extends Fragment {
                 courses.add(new Course("NEW COURSE ADDED", 0.5, 95));
                 courseAdapter.notifyItemInserted(courseAdapter.getItemCount());
                 courseRecyclerView.scrollToPosition(courseAdapter.getItemCount() - 1);
-
             }
         });
 
