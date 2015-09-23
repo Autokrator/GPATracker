@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView semRecyclerView;
     private RecyclerView.Adapter semAdapter;
-    ArrayList<Semester> semesters;
+    List<Semester> semesters;
 
     private CourseViewFragment courseViewFragment;
     List<Course> courses;
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
             semesters.add(new Semester("Semester " + i, generateCourses()));
         }
 
-
-        semAdapter = new SemAdapter(semesters);
+        semAdapter = new SemAdapter(semesters, getFragmentManager());
         semRecyclerView.setAdapter(semAdapter);
 
         addButton = (FloatingActionButton) findViewById(R.id.button_add_sem);

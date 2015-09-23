@@ -1,5 +1,7 @@
 package com.nretsew.gpatracker;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +13,12 @@ import java.util.List;
 
 public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> {
     private List<Semester> semesters;
+    public FragmentManager fragmentManager;
 
-    public SemAdapter(List<Semester> semesters) {
+    public SemAdapter(List<Semester> semesters, FragmentManager fragmentManager) {
         super();
         this.semesters = semesters;
+        this.fragmentManager = fragmentManager;
     }
 
     @Override
@@ -23,7 +27,11 @@ public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> 
         cardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                CourseViewFragment fr = new CourseViewFragment(semesters.get(0).courses);
 
+                fragmentTransaction.add(R.id.main_layout, fr);
+                fragmentTransaction.commit();
             }
         });
         return new CardViewHolder(cardItem);
