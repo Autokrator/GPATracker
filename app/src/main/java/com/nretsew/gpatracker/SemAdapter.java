@@ -10,11 +10,11 @@ import java.util.List;
 
 
 public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> {
-    private List<String> semesterNames;
+    private List<Semester> semesters;
 
-    public SemAdapter(List<String> semesterNames) {
+    public SemAdapter(List<Semester> semesters) {
         super();
-        this.semesterNames = semesterNames;
+        this.semesters = semesters;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> 
         cardItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
         return new CardViewHolder(cardItem);
@@ -31,12 +31,12 @@ public class SemAdapter extends RecyclerView.Adapter<SemAdapter.CardViewHolder> 
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
-        holder.title.setText(semesterNames.get(position));
+        holder.title.setText(semesters.get(position).title);
     }
 
     @Override
     public int getItemCount() {
-        return semesterNames.size();
+        return semesters.size();
     }
 
 

@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView semRecyclerView;
     private RecyclerView.Adapter semAdapter;
-    List<String> sems;
+    ArrayList<Semester> semesters;
 
     private CourseViewFragment courseViewFragment;
     List<Course> courses;
@@ -36,18 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initSem();
-        initCourse();
-        showCourseView();
-    }
-
-    private void showCourseView() {
-        //Fragment tools.
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        //Add fragment to activity and commit changes.
-        fragmentTransaction.add(R.id.main_layout, courseViewFragment);
-        fragmentTransaction.commit();
     }
 
     private void initSem(){
@@ -58,21 +46,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerLayout = new LinearLayoutManager(this);
         semRecyclerView.setLayoutManager(recyclerLayout);
 
-        sems = new ArrayList<String>();
+        semesters = new ArrayList<Semester>();
 
         for(int i = 0; i < 5; i++){
-            sems.add("Semester " + i);
+            semesters.add(new Semester("Semester " + i, generateCourses()));
         }
 
 
-        semAdapter = new SemAdapter(sems);
+        semAdapter = new SemAdapter(semesters);
         semRecyclerView.setAdapter(semAdapter);
 
         addButton = (FloatingActionButton) findViewById(R.id.button_add_sem);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sems.add("NEW SEMESTER ADDED");
+                semesters.add(new Semester("NEW SEMESTER ADDED", generateCourses()));
                 semAdapter.notifyItemInserted(semAdapter.getItemCount());
                 semRecyclerView.scrollToPosition(semAdapter.getItemCount() - 1);
 
@@ -90,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    sems.remove(position);
+                                    semesters.remove(position);
                                     semAdapter.notifyItemRemoved(position);
                                 }
                                 semAdapter.notifyDataSetChanged();
@@ -99,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-                                    sems.remove(position);
+                                    semesters.remove(position);
                                     semAdapter.notifyItemRemoved(position);
                                 }
                                 semAdapter.notifyDataSetChanged();
@@ -110,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void initCourse() {
+    public List<Course> generateCourses() {
         courses = new ArrayList<Course>();
 
         // Init: Random Values
@@ -118,5 +106,7 @@ public class MainActivity extends AppCompatActivity {
             courses.add(new Course("Course " + i, i*0.5, i*10));
         }
         courseViewFragment = new CourseViewFragment(courses);
+
+        return courses;
     }
 }
