@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.firebase.client.Firebase;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 
 import java.util.ArrayList;
@@ -30,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager recyclerLayout;
     private LinearLayout mainLinearLayout;
 
+    Firebase myFirebaseRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase("https://blistering-heat-6364.firebaseio.com/");
 
         initSem();
     }
