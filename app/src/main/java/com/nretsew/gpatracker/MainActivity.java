@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.firebase.client.Firebase;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 
 import java.util.ArrayList;
@@ -35,10 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager recyclerLayout;
     private FrameLayout mainFrameLayout;
 
+    Firebase myFirebaseRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase("https://blistering-heat-6364.firebaseio.com/");
 
         initSem();
     }

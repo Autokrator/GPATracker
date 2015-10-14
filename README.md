@@ -1,4 +1,6 @@
 # GPATracker
+Current Snapshot of App:
+![](https://cloud.githubusercontent.com/assets/9059977/10125884/3feaa00a-6552-11e5-9243-c630498e875c.png)
 
 TODO:
 - Fix semester button always being on top.

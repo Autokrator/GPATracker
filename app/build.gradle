@@ -4,6 +4,19 @@ android {
     compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
+    packagingOptions{
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+    }
+
     defaultConfig {
         applicationId "com.nretsew.gpatracker"
         minSdkVersion 14
@@ -26,5 +39,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.0.+'
     compile 'com.github.brnunes:swipeablerecyclerview:1.0.1'
     compile 'com.android.support:design:23.0.1'
+    compile 'com.firebase:firebase-client-android:2.4.0+'
 
 }
